@@ -1,21 +1,25 @@
-import { ToDo } from '@/types/todo';
+import { ToDo } from "@/types/todo";
 
-let todos: ToDo[] = [{
-  id: 1,
-  task: 'Buy Milk',
-  done: true
-}, {
-  id: 2,
-  task: 'Pay Utility Bills',
-  done: false
-}, {
-  id: 3,
-  task: 'Pick up Randy after Soccer',
-  done: false
-}];
+let todos: ToDo[] = [
+  {
+    id: 1,
+    task: "Buy Milk",
+    done: true,
+  },
+  {
+    id: 2,
+    task: "Pay Utility Bills",
+    done: false,
+  },
+  {
+    id: 3,
+    task: "Pick up Randy after Soccer",
+    done: false,
+  },
+];
 
 export async function GET() {
-  console.log('GET');
+  console.log("GET");
   return Response.json(todos, { status: 200 });
 }
 
@@ -28,17 +32,23 @@ export async function POST(req: Request) {
 
 export async function DELETE(req: Request) {
   const { id } = await req.json();
-  todos = todos.filter(todo => todo.id !== id);
-  return Response.json({ message: 'Todo deleted successfully' }, { status: 200 });
+  todos = todos.filter((todo) => todo.id !== id);
+  return Response.json(
+    { message: "Todo deleted successfully" },
+    { status: 200 }
+  );
 }
 
 export async function PUT(req: Request) {
   const { id } = await req.json();
-  const index = todos.findIndex(todo => todo.id === id);
+  const index = todos.findIndex((todo) => todo.id === id);
   if (index !== -1) {
     todos[index].done = !todos[index].done;
-    return Response.json({ message: 'Todo updated successfully' }, { status: 200 });
+    return Response.json(
+      { message: "Todo updated successfully" },
+      { status: 200 }
+    );
   } else {
-    return Response.json({ error: 'Todo not found' }, { status: 404 });
+    return Response.json({ error: "Todo not found" }, { status: 404 });
   }
 }

@@ -1,6 +1,5 @@
 export interface ToDo {
-    id: number;
-    task: string;
-    done?: boolean;
-  }
-  
+  id: number;
+  task: string;
+  done?: boolean;
+}
