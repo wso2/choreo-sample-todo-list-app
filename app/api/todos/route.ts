@@ -24,6 +24,7 @@ export async function GET() {
 }
 
 export async function POST(req: Request) {
+  console.log("POST");
   const { id, task } = await req.json();
   const newTodo: ToDo = { id, task, done: false };
   todos.push(newTodo);
@@ -31,6 +32,7 @@ export async function POST(req: Request) {
 }
 
 export async function DELETE(req: Request) {
+  console.log("DELETE");
   const { id } = await req.json();
   todos = todos.filter((todo) => todo.id !== id);
   return Response.json(
@@ -40,6 +42,7 @@ export async function DELETE(req: Request) {
 }
 
 export async function PUT(req: Request) {
+  console.log("PUT");
   const { id } = await req.json();
   const index = todos.findIndex((todo) => todo.id === id);
   if (index !== -1) {
